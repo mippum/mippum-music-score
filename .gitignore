@@ -1,0 +1,20 @@
+# MuseScore backup files
+*.mscx,
+*.mscz,
+
+# MuseScore autosave / temp
+*.mscx.autosave
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# MuseScore export artifacts (not source of truth)
+*.pdf
+*.mp3
+*.wav
+*.flac
+*.mid
+*.midi
+*.xml
+*.mxl

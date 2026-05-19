@@ -1,0 +1,7 @@
+# MuseScore files are XML — treat as text for meaningful diffs
+*.mscx  text  diff=xml  eol=lf
+*.mscz  binary
+
+# Standard text files
+*.md    text  eol=lf
+*.txt   text  eol=lf
