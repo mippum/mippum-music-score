@@ -12,10 +12,11 @@ MSCORE ?= $(shell \
   done)
 
 BUILD_DIR := build
+DIR       ?= .
 
-SOURCES := $(shell find . -name '*.mscx' -not -path './$(BUILD_DIR)/*')
-PDFS    := $(patsubst ./%.mscx,$(BUILD_DIR)/%.pdf,$(SOURCES))
-VIDEOS  := $(patsubst ./%.mscx,$(BUILD_DIR)/%.mp4,$(SOURCES))
+SOURCES := $(shell find $(DIR) -name '*.mscx' -not -path '$(BUILD_DIR)/*' | sed 's|^\./||')
+PDFS    := $(addprefix $(BUILD_DIR)/,$(SOURCES:.mscx=.pdf))
+VIDEOS  := $(addprefix $(BUILD_DIR)/,$(SOURCES:.mscx=.mp4))
 
 .PHONY: all pdf video clean check
 
