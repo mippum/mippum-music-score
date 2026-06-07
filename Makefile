@@ -15,15 +15,23 @@ BUILD_DIR := build
 
 SOURCES := $(shell find . -name '*.mscx' -not -path './$(BUILD_DIR)/*')
 PDFS    := $(patsubst ./%.mscx,$(BUILD_DIR)/%.pdf,$(SOURCES))
+VIDEOS  := $(patsubst ./%.mscx,$(BUILD_DIR)/%.mp4,$(SOURCES))
 
-.PHONY: all pdf clean check
+.PHONY: all pdf video clean check
 
 all: pdf
 
 pdf: check $(PDFS)
 	@echo "Done. PDFs are in $(BUILD_DIR)/"
 
+video: check $(VIDEOS)
+	@echo "Done. Videos are in $(BUILD_DIR)/"
+
 $(BUILD_DIR)/%.pdf: %.mscx
+	@mkdir -p $(dir $@)
+	$(MSCORE) -o $@ $<
+
+$(BUILD_DIR)/%.mp4: %.mscx
 	@mkdir -p $(dir $@)
 	$(MSCORE) -o $@ $<
 
