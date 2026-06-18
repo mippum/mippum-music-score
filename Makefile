@@ -2,6 +2,8 @@
 #
 # DIR 특정하는 법
 # make musicxml DIR=piano/ferdinand_beyer
+# make video DIR=piano/...         → 시트에 맞춰 내보내기
+# make video DIR=piano/... RES=1080p → 해상도로 맞춰서 내보내기 (2160p/1440p/1080p/720p/480p/360p)
 #
 # MuseScore CLI auto-detection
 # Priority: mscore4 > mscore3 > mscore > musescore4 > musescore3 > musescore
@@ -21,7 +23,7 @@ MSCORE ?= $(shell \
 BUILD_DIR := build
 DIR       ?= .
 
-.PHONY: all pdf video musicxml clean check
+.PHONY: all pdf musicxml video clean check
 
 all: pdf
 
@@ -33,16 +35,7 @@ pdf: check
 	done
 	@echo "Done. PDFs are in $(BUILD_DIR)/"
 
-video: check $(VIDEOS)
-	@echo "Done. Videos are in $(BUILD_DIR)/"
 
-$(BUILD_DIR)/%.pdf: %.mscx
-	@mkdir -p $(dir $@)
-	$(MSCORE) -o $@ $<
-
-$(BUILD_DIR)/%.mp4: %.mscx
-	@mkdir -p $(dir $@)
-	$(MSCORE) -o $@ $<
 musicxml: check
 	@find $(DIR) -name $(BUILD_DIR) -prune -o -name '*.mscx' -print | while IFS= read -r f; do \
 	  out="$(BUILD_DIR)/$${f%.mscx}.musicxml"; \
@@ -50,6 +43,14 @@ musicxml: check
 	  "$(MSCORE)" -o "$$out" "$$f"; \
 	done
 	@echo "Done. MusicXML files are in $(BUILD_DIR)/"
+
+video: check
+	@find $(DIR) -name $(BUILD_DIR) -prune -o -name '*.mscx' -print | while IFS= read -r f; do \
+	  out="$(BUILD_DIR)/$${f%.mscx}.mp4"; \
+	  mkdir -p "$$(dirname "$$out")"; \
+	  "$(MSCORE)" --score-video $(if $(RES),--resolution $(RES),) -o "$$out" "$$f"; \
+	done
+	@echo "Done. MP4 files are in $(BUILD_DIR)/"
 
 clean:
 	rm -rf $(BUILD_DIR)

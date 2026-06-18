@@ -44,6 +44,31 @@ piano/
 | Op. 101 No. 45 — Exercise in Eighth-Notes | `piano/ferdinand_beyer/op101_vorschule_im_klavierspiel/beyer_op101_no45.mscx` | C장조 | 4/4 | 16 |
 | Op. 101 No. 46 — Exercise in Eighth-Notes | `piano/ferdinand_beyer/op101_vorschule_im_klavierspiel/beyer_op101_no46.mscx` | C장조 | 4/4 | 17 |
 
+## 연주 영상 녹화 (Windows 10/11)
+
+MuseScore 4 CLI는 영상 내보내기를 지원하지 않습니다. 노트 하이라이트가 포함된 연주 영상은 아래 방법으로 수동 녹화합니다.
+
+### 방법 1 — MuseScore 4 내장 영상 내보내기 (권장)
+
+1. MuseScore 4에서 악보 파일(`.mscx`)을 엽니다.
+2. 메뉴에서 **File → Export → Video (MP4)** 를 선택합니다.
+3. 저장 위치와 파일명을 지정하고 내보냅니다.
+
+내보낸 `.mp4` 파일은 저장소에 커밋할 수 있습니다.
+
+### 방법 2 — Xbox Game Bar 화면 녹화 (Windows 10/11 기본 내장)
+
+MuseScore 4의 내보내기 기능에 문제가 있거나 실시간 녹화가 필요한 경우:
+
+1. MuseScore 4에서 악보 파일을 엽니다.
+2. MuseScore 창을 클릭해서 포커스를 맞춥니다.
+3. **Win + Alt + R** 을 눌러 화면 녹화를 시작합니다.
+4. MuseScore에서 재생( **Space** )합니다.
+5. 재생이 끝나면 **Win + Alt + R** 을 다시 눌러 녹화를 중지합니다.
+6. 녹화된 파일은 `동영상\캡처` 폴더(또는 `Videos\Captures`)에 `.mp4`로 저장됩니다.
+
+> **참고**: Xbox Game Bar가 비활성화된 경우 **설정 → 게임 → Xbox Game Bar**에서 켜거나, OBS Studio를 대안으로 사용할 수 있습니다.
+
 ## 저작권
 
 수록된 모든 악보는 저작권이 만료된 공개 도메인(Public Domain) 작품입니다.
